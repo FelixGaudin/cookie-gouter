@@ -16,7 +16,7 @@ async def called_once_a_day():  # Fired every day
     await bot.wait_until_ready()
     # Note: It's more efficient to do bot.get_guild(guild_id).get_channel(channel_id) as there's less looping involved, but just get_channel still works fine
     channel = bot.get_channel(channel_id)
-    await channel.send("C'est l'heure du gouter !!!! (c'est un test)")
+    await channel.send("C'est l'heure du gouter !!!!")
 
 
 async def background_task():
@@ -47,7 +47,13 @@ async def background_task():
 
 @bot.command()
 async def quand_le_gouter(ctx: commands.Context):
-    message = await ctx.send("On fait quand le gouter semaine prochaine ?")
+    message = await ctx.send("""On fait quand le gouter semaine prochaine ?
+    1️⃣ Lundi
+    2️⃣ Mardi
+    3️⃣ Mercredi
+    4️⃣ Jeudi
+    5️⃣ Vendredi 
+    """)
     for emoji in ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣']:
         await message.add_reaction(emoji)
     await ctx.message.delete()
